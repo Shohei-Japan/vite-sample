@@ -11,6 +11,7 @@
         </router-link>
       </p>
     </template>
+    <router-view />
   </div>
 </template>
 
@@ -20,11 +21,11 @@ export default {
   computed: {
     routes: () => [
       {
-        to: "/composition",
+        to: "/composition_sample/composition",
         text: "Composition API"
       },
       {
-        to: "/options",
+        to: "/composition_sample/options",
         text: "Options API"
       }
     ]
