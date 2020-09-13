@@ -1,43 +1,47 @@
 <template>
   <div class="border_radius_previewer">
-    <div class="border_width">
-      <input
-        type="range"
-        v-model="boxBorderWidth.value"
-        min="1"
-        max="50"
-        step="1"
-      >
-      border-width {{ boxBorderWidth.value }}
-    </div>
-    <div class="box_size_range">
-      <div v-for="(item, key) in boxSizeValues">
+    <div class="input_range__wrapper">
+      <div class="border_width">
         <input
-          v-model="boxSizeValues[key]"
           type="range"
-          min="0"
-          max="200"
+          v-model="boxBorderWidth.value"
+          class="input_range"
+          min="1"
+          max="50"
           step="1"
         >
-        {{ key }} {{ item }}
+        border-width {{ boxBorderWidth.value }}
+      </div>
+      <div class="box_size_range">
+        <div v-for="(item, key) in boxSizeValues">
+          <input
+            v-model="boxSizeValues[key]"
+            class="input_range"
+            type="range"
+            min="0"
+            max="200"
+            step="1"
+          >
+          {{ key }} {{ item }}
+        </div>
+      </div>
+      <div class="radius_range">
+        <div v-for="item in radiusValues">
+          <input
+            v-model="item.value"
+            type="range"
+            class="input_range"
+            min="0"
+            :max="radiusLimit"
+            :disabled="hasAnyZeroSize"
+            step="1"
+          >
+          {{ item.name }} {{ item.value }}
+        </div>
       </div>
     </div>
-    <div class="input_range">
-      <div v-for="item in radiusValues">
-        <input
-          v-model="item.value"
-          type="range"
-          min="0"
-          :max="radiusLimit"
-          :disabled="hasAnyZeroSize"
-          step="1"
-        >
-        {{ item.name }} {{ item.value }}
-      </div>
-    </div>
-    <div>
-      <p class="result_text">{{ boxStyles }}</p>
-    </div>
+    <input class="result_text" id="result_text" :value="boxStyles" >
+    <button @click="copyStyles()">Copy Styles!</button>
     <div
       class="box"
       :style="boxStyles"
@@ -74,7 +78,7 @@ export default {
       }
     })
     const boxBorderWidth = reactive({
-      value: 20
+      value: 1
     })
     const boxSizeStyle = computed(() => {
       return Object.keys(boxSizeValues).reduce((arr, cur) => {
@@ -105,18 +109,23 @@ export default {
       return `border-width: ${boxBorderWidth.value}px;`
     })
     const boxStyles = computed(() => {
-      return `
-        ${boxBorderStyle.value}
-        ${boxSizeStyle.value}
+      return `${boxBorderStyle.value}\n
+        ${boxSizeStyle.value}\n
         ${radiusStyle.value}`
     })
+    function copyStyles() {
+      const copyText = document.getElementById('result_text') as HTMLInputElement
+      copyText.select();
+      document.execCommand("copy");
+    }
     return {
       boxSizeValues,
       radiusValues,
       boxBorderWidth,
       hasAnyZeroSize,
       radiusLimit,
-      boxStyles
+      boxStyles,
+      copyStyles
     }
   }
 }
@@ -130,8 +139,12 @@ export default {
   justify-content: center;
   align-items: center;
 }
+.input_range__wrapper {
+  text-align: left;
+  margin-bottom: 0px;
+}
 .input_range {
-  margin-bottom: 40px;
+  width: 300px;
 }
 .box {
   display: box;
@@ -140,5 +153,7 @@ export default {
 .result_text {
   white-space: pre-line;
   text-align: left;
+  margin: 0;
+  margin-bottom: 40px;
 }
 </style>
