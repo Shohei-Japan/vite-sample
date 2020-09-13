@@ -1,6 +1,8 @@
 <template>
   <h1>App Ideas</h1>
-  <p>{{ AppIdeas }}</p>
+  <div v-for="(idea, key) in AppIdeas" :key="key">
+    <router-link :to="idea.to">{{ idea.name }}</router-link>
+  </div>
 </template>
 
 <script lang="ts">
