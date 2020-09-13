@@ -12,7 +12,7 @@
       >
       <button
         class="button"
-        :disabled="state.wrongInput"
+        :disabled="!state.binaryNumber || state.wrongInput"
       >
         Convert
       </button>
