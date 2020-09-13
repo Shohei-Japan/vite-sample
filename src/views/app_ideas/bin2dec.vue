@@ -74,7 +74,9 @@ export default {
 .bin2dec {
   background-color: #efdbff;
   height: 100vh;
-  padding: 48px 52px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .input_form {
   padding: 20px;
