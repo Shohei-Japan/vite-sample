@@ -1,12 +1,9 @@
 <template>
   <div class="calculator__wrapper">
     <div class="input__wrapper">
-      <h2>
+      <h2 class="result">
         {{ state.result }}
       </h2>
-      <p>
-        {{ formuraString }}
-      </p>
       <input
         v-model="state.selectedNumber"
         class="input"
@@ -185,29 +182,56 @@ export default {
 
 <style lang="scss" scoped>
 .calculator__wrapper {
+  background-color: #616161;
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+.result {
+  color: #cccccc;
+  font-size: 40px;
+  margin: 10px;
+}
 .input {
+  font-size: 20px;
   text-align: right;
   display: inline-block;
   width: 160px;
-  height: 32px;
+  height: 40px;
   margin-bottom: 16px;
+  padding: 4px 12px;
+
+  border: none;
+  border-radius: 12px;
+  background: #cccccc;
+  box-shadow: inset -5px 5px 10px #a3a3a3, 
+              inset 5px -5px 10px #f5f5f5
 }
 .line {
   display: flex;
   justify-content: center;
 }
 .item {
+  color: #bbbbbb;
+  font-size: 20px;
+  border-radius: 50%;
+  background: linear-gradient(225deg, #686868, #575757);
+  box-shadow: -7px 7px 14px #535353, 
+             7px -7px 14px #6f6f6f;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 40px;
-  width: 40px;
+  height: 60px;
+  width: 60px;
+  margin: 20px 16px;
+  transition: 300ms ease-in-out;
   cursor: pointer;
+
+  &:hover {
+    box-shadow: -16px 16px 35px #5c5c5c, 
+             16px -16px 35px #666666;
+  }
 }
 </style>
