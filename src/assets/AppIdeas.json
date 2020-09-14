@@ -6,9 +6,15 @@
     "to": "/app_ideas/bin2dec"
   },
   {
-    "tier": "2-Beginner",
+    "tier": "1-Beginner",
     "source": "https://github.com/florinpop17/app-ideas/blob/master/Projects/1-Beginner/Border-Radius-Previewer.md",
     "name": "Border-radius Previewer",
     "to": "/app_ideas/border_radius_previewer"
+  },
+  {
+    "tier": "1-Beginner",
+    "source": "https://github.com/florinpop17/app-ideas/blob/master/Projects/1-Beginner/Calculator-App.md",
+    "name": "Calculator",
+    "to": "/app_ideas/calculator"
   }
 ]

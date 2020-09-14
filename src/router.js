@@ -4,6 +4,7 @@ import Index from './views/index.vue'
 import AppIdeasIndex from './views/app_ideas/index.vue'
 import Bin2Dec from './views/app_ideas/bin2dec.vue'
 import borderRadiusPreviewer from './views/app_ideas/border_radius_previewer.vue'
+import Calculator from './views/app_ideas/calculator.vue'
 
 import CompositionSampleIndex from "./views/composition_sample/index.vue";
 import OptionsApi from "./views/composition_sample/OptionsApi.vue";
@@ -31,6 +32,11 @@ const routes = [
     path: '/app_ideas/border_radius_previewer',
     name: 'Border-radius Previewer',
     component: borderRadiusPreviewer
+  },
+  {
+    path: '/app_ideas/calculator',
+    name: 'Calculator',
+    component: Calculator
   },
   {
     path: "/composition_sample",
