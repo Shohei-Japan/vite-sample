@@ -81,10 +81,18 @@ export default {
       [{ label: '0', type: ITEM_TYPES.NUMBER }, { label: OPERATION_LABELS.ALL_CLEAR.label, operation: OPERATION_LABELS.ALL_CLEAR, type: ITEM_TYPES.ALL_CLEAR }, { label: OPERATION_LABELS.EQUAL.label, operation: OPERATION_LABELS.EQUAL, type: ITEM_TYPES.EQUAL }, { label: OPERATION_LABELS.ADDITION.label,operation: OPERATION_LABELS.ADDITION, type: ITEM_TYPES.METHOD }]
     ]
     function resetState() {
-      state.selectedNumber = 0
-      state.formuraArray = []
-      state.selectedType = null
-      state.selectedOperation = null
+      console.log(state)
+      Object.keys(state).map(key => {
+        if (key === 'formuraArray') {
+          state[key] = []
+        }
+        if (key === 'selectedType' || key === 'selectedOperation') {
+          state[key] = null
+        }
+        if (key === 'selectedNumber' || key === 'result') {
+          state[key] = 0  
+        }
+      })
     }
     function canSwitchInputType(type: String) :boolean {
       return state.selectedType && state.selectedType !== type
